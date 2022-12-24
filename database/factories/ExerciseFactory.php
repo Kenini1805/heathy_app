@@ -19,6 +19,7 @@ class ExerciseFactory extends Factory
             'name' => $this->faker->title(),
             'kcal' => rand(1, 1000),
             'time' => rand(1, 1000),
+            'date' => $this->faker->date($format = 'Y-m-d', $max = 'now')
         ];
     }
 }

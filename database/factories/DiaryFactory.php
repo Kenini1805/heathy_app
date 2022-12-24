@@ -28,6 +28,7 @@ class DiaryFactory extends Factory
             'meal_date' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
             'meal_time' => $this->faker->date($format = 'H:i:s', $max = 'now'),
             'content' => $this->faker->paragraph(),  
+            'thumbnail' => $this->faker->imageUrl($width = 640, $height = 480),
         ];
     }
 }

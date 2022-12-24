@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::name('login')->post('/login', 'Api\AuthController@login');
+Route::name('columns.index')->get('/columns', 'Api\ColumnController@index');
+
+Route::middleware('auth:api')->group(function () {
+    Route::name('diaries.index')->get('/diaries', 'Api\DiaryController@index');
+    Route::name('meals.index')->get('/meals', 'Api\MealController@index');
+    Route::name('records.index')->get('/records', 'Api\RecordController@index');
+    Route::name('exercises.index')->get('/exercises', 'Api\ExerciseController@index');
 });

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Record;
 use Illuminate\Database\Seeder;
 
@@ -15,6 +16,19 @@ class RecordsTableSeeder extends Seeder
     public function run()
     {
         Record::truncate();
-        Record::factory(10)->create();
+
+        $records = [];
+        for ($i=1; $i < 13; $i++) { 
+            $data = [
+                'user_id' => User::first()->id,
+                'weight' => rand(30,200),
+                'body_fat' => rand(1,100),
+                'month' => $i,
+                'year' => date("Y"),
+            ];
+            $records[] = $data;
+        }
+
+        return Record::insert($records);
     }
 }

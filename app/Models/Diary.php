@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Meal;
+use App\Models\Diary;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Diary extends Model
 {
@@ -15,4 +17,14 @@ class Diary extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(Diary::class);
+    }
+
+    public function meal()
+    {
+        return $this->belongsTo(Meal::class);
+    }
 }

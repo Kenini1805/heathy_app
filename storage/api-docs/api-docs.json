@@ -1,0 +1,371 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My First API",
+        "version": "2.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login with username and password",
+                "operationId": "222b2625838e3c57e017987f73598fda",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Diaries"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/columns": {
+            "get": {
+                "tags": [
+                    "Column"
+                ],
+                "summary": "Get list column",
+                "operationId": "88b58fc2f509f8e8f7bf9729230efa9c",
+                "responses": {
+                    "200": {
+                        "description": "Diaries",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ColumnResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api/diaries": {
+            "get": {
+                "tags": [
+                    "Top page",
+                    "My record"
+                ],
+                "summary": "Get list my diary",
+                "operationId": "f8edff380fdb2168574b18cff9182d7d",
+                "responses": {
+                    "200": {
+                        "description": "Diaries",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DiaryResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/exercises": {
+            "get": {
+                "tags": [
+                    "My record"
+                ],
+                "summary": "Get my exercise for chart",
+                "operationId": "2127cfa4a1737fb80ac7a7abb55bbbb1",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "Date",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "meals",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ExerciseResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/meals": {
+            "get": {
+                "tags": [
+                    "Top page"
+                ],
+                "summary": "Get list meal",
+                "operationId": "b0cec5c3112235d8259f1e5669c3da16",
+                "responses": {
+                    "200": {
+                        "description": "meals",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MealResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/records": {
+            "get": {
+                "tags": [
+                    "Top page",
+                    "My record"
+                ],
+                "summary": "Get my record for chart",
+                "operationId": "a9478ed65df95277137cb82732ac1925",
+                "responses": {
+                    "200": {
+                        "description": "meals",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecordResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ColumnResource": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "content": {
+                                "type": "string"
+                            },
+                            "publish_date": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "thumbnail": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "DiaryResource": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "content": {
+                                "type": "string"
+                            },
+                            "meal_date": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "meal_time": {
+                                "type": "string",
+                                "format": "time"
+                            },
+                            "thumbnail": {
+                                "type": "string"
+                            },
+                            "meal": {
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "ExerciseResource": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "kcal": {
+                                "type": "integer"
+                            },
+                            "date": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "time": {
+                                "type": "integer"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "MealResource": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "RecordResource": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "weight": {
+                                "type": "number",
+                                "format": "float"
+                            },
+                            "body_fat": {
+                                "type": "number",
+                                "format": "float"
+                            },
+                            "name": {
+                                "type": "integer"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "TagResource": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
