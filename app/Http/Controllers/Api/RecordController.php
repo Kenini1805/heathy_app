@@ -39,8 +39,21 @@ class RecordController extends Controller
      *     @OA\Response(
      *         response=400,
      *         description="Bad Request",
-     *     )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthenticated"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not found"
+     *     ),
+     *     @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *     ),
      * )
+     * 
      * @return RecordResource
      */
     public function index(Request $request)

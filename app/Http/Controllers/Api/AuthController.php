@@ -16,14 +16,14 @@ use Symfony\Component\HttpFoundation\Response;
 class AuthController extends Controller
 {
     /**
-     * Login with username and password
+     * Login with email and password
      *
      * @OA\Post(
      *     path="/api/login",
      *     tags={"Authentication"},
      *     @OA\Parameter(
      *          in="query",
-     *          name="email",
+     *          name="username",
      *          required=true,
      *          @OA\Schema(
      *            type="string"
@@ -39,20 +39,38 @@ class AuthController extends Controller
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Diaries",
+     *         description="Success",
+     *         @OA\JsonContent(
+     *                  @OA\Property(property="token_type", type="string"),
+     *                  @OA\Property(property="expires_in", type="integer"),
+     *                  @OA\Property(property="access_token", type="string"),
+     *                  @OA\Property(property="refresh_token", type="string"),
+     *         )
      *     ),
      *     @OA\Response(
      *         response=400,
      *         description="Bad Request",
-     *     )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthenticated"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not found"
+     *     ),
+     *     @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *     ),
      * )
-     *
+     * 
      * @return ColumnResource
      */
     public function login(LoginRequest $request)
     {
         $data = Config::get('services.passport') + [
-            'username' => $request->input('email'),
+            'username' => $request->input('username'),
             'password' => $request->input('password'),
         ];
         $request = Request::create('/oauth/token', 'POST', $data);
