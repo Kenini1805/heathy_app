@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Repositories\MealRepository;
+use App\Repositories\UserRepository;
 use App\Repositories\DiaryRepository;
 use App\Repositories\ColumnRepository;
 use App\Repositories\RecordRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\MealRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\DiaryRepositoryInterface;
 use App\Repositories\Contracts\ColumnRepositoryInterface;
 use App\Repositories\Contracts\RecordRepositoryInterface;
@@ -24,6 +26,7 @@ class RepositoryProvider extends ServiceProvider
         MealRepositoryInterface::class => MealRepository::class,
         RecordRepositoryInterface::class => RecordRepository::class,
         ColumnRepositoryInterface::class => ColumnRepository::class,
+        UserRepositoryInterface::class => UserRepository::class,
     ];
     /**
      * Register services.

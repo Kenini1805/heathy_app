@@ -23,6 +23,14 @@ class RecordController extends Controller
      *     path="/api/records",
      *     tags={"Top page", "My record"},
      *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *          in="query",
+     *          name="type",
+     *          required=false,
+     *          @OA\Schema(
+     *            type="string"
+     *          )
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="meals",
@@ -35,9 +43,10 @@ class RecordController extends Controller
      * )
      * @return RecordResource
      */
-    public function index()
+    public function index(Request $request)
     {
-        $records = $this->recordService->getRecord();
+        $chartType = $request->type ?? 'month';
+        $records = $this->recordService->getRecord($chartType);
 
         return RecordResource::collection($records);
     }

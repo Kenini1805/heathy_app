@@ -24,6 +24,8 @@ class RecordsTableSeeder extends Seeder
                 'weight' => rand(30,200),
                 'body_fat' => rand(1,100),
                 'month' => $i,
+                'day' => rand(1, 28),
+                'week' => rand(1, 52),
                 'year' => date("Y"),
             ];
             $records[] = $data;

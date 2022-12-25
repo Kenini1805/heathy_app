@@ -44,4 +44,12 @@ class BaseRepository implements RepositoryInterface
     {
         return $this->model->where($conditions)->orderBy('id', 'desc')->get();
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function findOne(array $conditions)
+    {
+        return $this->model->where($conditions)->first();
+    }
 }

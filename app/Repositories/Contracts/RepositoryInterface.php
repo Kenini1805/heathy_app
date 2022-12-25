@@ -24,4 +24,13 @@ interface RepositoryInterface
      * @return Model[]
      */
     public function find(array $conditions = []);
+
+    /**
+     * Find a specific record that matches a given conditions
+     *
+     * @param array $conditions
+     *
+     * @return Model
+     */
+    public function findOne(array $conditions);
 }

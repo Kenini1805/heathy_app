@@ -4,5 +4,5 @@ namespace App\Repositories\Contracts;
 
 interface RecordRepositoryInterface extends RepositoryInterface
 {
-    public function getRecord($userId, $year);
+    public function getRecord($userId, $chartType);
 }

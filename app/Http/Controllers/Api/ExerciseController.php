@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ExerciseService;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ExerciseResource;
 
 class ExerciseController extends Controller
 {

@@ -23,6 +23,7 @@ DB_PASSWORD=
 
 ```bash
 php artisan migrate --seed
+// User test: test@gmail.com/123456
 ```
 
 ```bash

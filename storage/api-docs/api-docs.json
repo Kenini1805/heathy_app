@@ -172,6 +172,16 @@
                 ],
                 "summary": "Get my record for chart",
                 "operationId": "a9478ed65df95277137cb82732ac1925",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "meals",
@@ -179,6 +189,35 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/RecordResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/profile": {
+            "get": {
+                "tags": [
+                    "Column"
+                ],
+                "summary": "Get profile user with tags",
+                "operationId": "85d739158552477973430d9c6aaf191e",
+                "responses": {
+                    "200": {
+                        "description": "profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResource"
                                 }
                             }
                         }
@@ -331,9 +370,6 @@
                             "body_fat": {
                                 "type": "number",
                                 "format": "float"
-                            },
-                            "name": {
-                                "type": "integer"
                             }
                         },
                         "type": "object"
@@ -350,6 +386,39 @@
                             },
                             "name": {
                                 "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "UserResource": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "username": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "tags": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
                             }
                         },
                         "type": "object"

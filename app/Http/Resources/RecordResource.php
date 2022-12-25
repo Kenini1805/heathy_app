@@ -13,7 +13,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *                  @OA\Property(property="id", type="integer"),
  *                  @OA\Property(property="weight", type="number", format="float"),
  *                  @OA\Property(property="body_fat", type="number", format="float"),
- *                  @OA\Property(property="name", type="integer"),
  *          )
  *     }
  * )
@@ -32,7 +31,6 @@ class RecordResource extends JsonResource
             'id' => $this->id,
             'weight' => $this->weight,
             'body_fat' => $this->body_fat,
-            'month' => $this->month,
         ];
     }
 }

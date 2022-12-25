@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -15,6 +16,9 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::truncate();
-        User::factory(1)->create();
+        $tag = Tag::first();
+        User::factory()->hasAttached([
+            $tag
+        ])->count(1)->create();
     }
 }

@@ -15,9 +15,9 @@ class RecordService extends BaseService
         $this->recordRepository = $recordRepository;
     }
 
-    public function getRecord()
+    public function getRecord($chartType)
     {
-        $records = $this->recordRepository->getRecord(Auth::id(), date('Y'));
+        $records = $this->recordRepository->getRecord(Auth::id(), $chartType);
 
         return $records;
     }
