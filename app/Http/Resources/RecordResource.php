@@ -13,6 +13,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *                  @OA\Property(property="id", type="integer"),
  *                  @OA\Property(property="weight", type="number", format="float"),
  *                  @OA\Property(property="body_fat", type="number", format="float"),
+ *                  @OA\Property(property="day", type="number"),
+ *                  @OA\Property(property="week", type="number"),
+ *                  @OA\Property(property="month", type="number"),
+ *                  @OA\Property(property="year", type="number"),
+ * 
  *          )
  *     }
  * )
@@ -28,9 +33,12 @@ class RecordResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
             'weight' => $this->weight,
             'body_fat' => $this->body_fat,
+            'day' => $this->day,
+            'week' => $this->week,
+            'month' => $this->month,
+            'year' => $this->year,
         ];
     }
 }
